@@ -23,24 +23,24 @@ async function showUsers() {
       },
     });
     if (response.ok) {
+      outputBox.textContent = "";
       let result = await response.json();
       console.log(result);
 
-      let login = document.createElement("div");
-      login.textContent = result.login;
+      result.forEach((element) => {
+        let login = document.createElement("div");
+        login.textContent = element.login;
+        console.log(login);
 
-      let avatar = document.createElement("img");
-      avatar.src = result.avatar_url;
+        let avatar = document.createElement("img");
+        avatar.src = element.avatar_url;
 
-      outputBox.append(login, avatar);
+        outputBox.append(login, avatar);
+      });
     }
   } catch (error) {
     console.log(error);
   }
-}
-
-function trinamUzrasa() {
-  outputBox.textContent = "";
 }
 
 document.querySelector("#btn").addEventListener("click", showUsers);
