@@ -28,14 +28,17 @@ async function showUsers() {
       console.log(result);
 
       result.forEach((element) => {
-        let login = document.createElement("div");
-        login.textContent = element.login;
-        console.log(login);
+        let cardBox = document.createElement("div");
+        cardBox.id = "cardBox";
 
         let avatar = document.createElement("img");
         avatar.src = element.avatar_url;
 
-        outputBox.append(login, avatar);
+        let login = document.createElement("div");
+        login.textContent = element.login;
+
+        cardBox.append(avatar, login);
+        outputBox.append(cardBox);
       });
     }
   } catch (error) {
